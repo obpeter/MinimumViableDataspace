@@ -9,7 +9,7 @@ services:
         JVM_ARGS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     environment:
       IDS_WEBHOOK_ADDRESS: http://company1:8282
-      EDC_BLOBSTORE_ENDPOINT_TEMPLATE: "http://azurite:10000/%s"
+      EDC_SAMPLES_TRANSFER_01_ASSET_PATH: /exchange/test-document.txt
       EDC_CONNECTOR_NAME: company1
       EDC_IDENTITY_DID_URL: did:web:did-server:company1
       EDC_VAULT: /resources/vault/company1/company1-vault.properties
@@ -35,6 +35,7 @@ services:
       - "7171:7171"
     volumes:
       - ./resources:/resources
+      - ./exchange:/exchange
 
   # EDC Connector to simulate a dataspace participant acting as a data consumer which is located in EU.
   company2:
@@ -45,7 +46,7 @@ services:
         JVM_ARGS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006"
     environment:
       IDS_WEBHOOK_ADDRESS: http://company2:8282
-      EDC_BLOBSTORE_ENDPOINT_TEMPLATE: "http://azurite:10000/%s"
+      EDC_BLOBSTORE_ENDPOINT_TEMPLATE: "https://%s.blob.core.windows.net"
       EDC_CONNECTOR_NAME: company2
       EDC_IDENTITY_DID_URL: did:web:did-server:company2
       EDC_VAULT: /resources/vault/company2/company2-vault.properties

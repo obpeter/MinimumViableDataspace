@@ -36,6 +36,8 @@ public class CloudBlobTransferIntegrationTest extends AbstractBlobTransferTest {
 
     @Test
     public void transferBlob_success() {
+
+        System.out.println("Vault Storage name " + DST_KEY_VAULT_NAME);
         var blobAccountDetails = blobAccount(DST_KEY_VAULT_NAME);
         var storageAccountName = blobAccountDetails.get(0);
         var storageAccountKey = blobAccountDetails.get(1);
